@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Card from "../../components/Card";
 
 function PostList() {
     const posts = useSelector((state) => state.posts);
@@ -7,10 +8,10 @@ function PostList() {
     return (
         <div>
             {posts.map((post) => (
-                <div key={post.id}>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
-                </div>
+                <Card key={post.id}>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Content>{post.content}</Card.Content>
+                </Card>
             ))}
         </div>
     );

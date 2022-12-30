@@ -1,10 +1,14 @@
 import PostList from "./app/post/PostList";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
-        <div>
-            <PostList />
-        </div>
+        <>
+            <Navbar />
+            <section className="max-w-2xl mx-auto pt-8">
+                <PostList />
+            </section>
+        </>
     );
 }
 

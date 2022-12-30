@@ -13,6 +13,12 @@ const initialState = [
         content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, saepe.",
     },
+    {
+        id: 3,
+        title: "Third Post",
+        content:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates obcaecati distinctio dignissimos, excepturi harum et!",
+    },
 ];
 
 const post = createSlice({
