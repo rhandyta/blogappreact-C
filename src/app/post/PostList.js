@@ -4,7 +4,6 @@ import Card from "../../components/Card";
 
 function PostList() {
     const posts = useSelector((state) => state.posts);
-    console.log(posts);
     return (
         <div>
             {posts.map((post) => (
