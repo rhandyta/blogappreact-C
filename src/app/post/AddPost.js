@@ -1,35 +1,77 @@
-import React, { useEffect, useRef } from "react";
+import { nanoid } from "@reduxjs/toolkit";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import Input from "../../components/Input";
 import Textarea from "../../components/Textarea";
+import { addPost } from "./postSlice";
+
 function AddPost() {
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [author, setAuthor] = useState("");
     const inputRef = useRef("");
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         inputRef.current.focus();
     }, []);
+
+    function submitHandler(e) {
+        e.preventDefault();
+        if (title && author && content) {
+            dispatch(
+                addPost({
+                    id: nanoid(),
+                    title,
+                    author,
+                    content,
+                })
+            );
+            setTitle("");
+            setContent("");
+        } else {
+            return alert("Field is required!");
+        }
+    }
+
     return (
         <div className="border shadow-md rounded-md p-5">
             <h1 className="font-semibold text-2xl mb-5">Add Post</h1>
-            <form>
+            <form onSubmit={submitHandler}>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="title">Title</label>
-                    <Input ref={inputRef} id="title" />
+                    <Input
+                        ref={inputRef}
+                        id="title"
+                        placeholder="Title"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
+                    />
                 </div>
                 <div className="flex flex-col mb-4">
                     <label htmlFor="author">Author</label>
                     <select
-                        name=""
-                        id=""
+                        onChange={(e) => setAuthor(e.target.value)}
                         className="border border-slate-200 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-400 transition duration-300 px-2 text-md"
                     >
-                        <option value="penulis1">Author 1</option>
-                        <option value="penulis1">Author 2</option>
+                        <option>Select Author</option>
+                        <option value="1">Author 1</option>
+                        <option value="2">Author 2</option>
                     </select>
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="content">Content</label>
-                    <Textarea id="content"></Textarea>
+                    <Textarea
+                        id="content"
+                        onChange={(e) => setContent(e.target.value)}
+                        value={content}
+                    ></Textarea>
                 </div>
-                <button className="bg-sky-500 shadow-sm rounded-md active:bg-sky-600 py-1 px-3 text-white mt-2">
+                <button
+                    type="submit"
+                    className="bg-sky-500 shadow-sm rounded-md active:bg-sky-600 py-1 px-3 text-white mt-2"
+                >
                     Submit
                 </button>
             </form>

@@ -9,7 +9,11 @@ function PostList() {
             {posts.map((post) => (
                 <Card key={post.id}>
                     <Card.Title>{post.title}</Card.Title>
-                    <Card.Content>{post.content}</Card.Content>
+                    <Card.Content author={post.author}>
+                        {post.content.length > 100
+                            ? `${post.content.substr(0, 100)}...`
+                            : post.content}
+                    </Card.Content>
                 </Card>
             ))}
         </div>
