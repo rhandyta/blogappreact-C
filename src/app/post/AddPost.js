@@ -1,6 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import Textarea from "../../components/Textarea";
 import { addPost } from "./postSlice";
@@ -12,6 +13,9 @@ function AddPost() {
     const inputRef = useRef("");
 
     const dispatch = useDispatch();
+    const users = useSelector((state) => state.users);
+
+    const navigator = useNavigate();
 
     useEffect(() => {
         inputRef.current.focus();
@@ -30,6 +34,7 @@ function AddPost() {
             );
             setTitle("");
             setContent("");
+            navigator("/");
         } else {
             return alert("Field is required!");
         }
@@ -56,8 +61,11 @@ function AddPost() {
                         className="border border-slate-200 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-400 transition duration-300 px-2 text-md"
                     >
                         <option>Select Author</option>
-                        <option value="1">Author 1</option>
-                        <option value="2">Author 2</option>
+                        {users.map((user) => (
+                            <option value={user.id} key={user.id}>
+                                {user.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="flex flex-col">

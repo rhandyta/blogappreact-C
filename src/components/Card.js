@@ -1,4 +1,5 @@
 import React from "react";
+import Author from "./Author";
 
 function Card({ children }) {
     return (
@@ -16,11 +17,7 @@ function Content({ children, author }) {
             <p className="font-thin text-sm text-slate-500">3 minutes later</p>
             <p className="text-slate-600 font-normal py-3">{children}</p>
             <p className="text-sm">
-                Author by:
-                <span className="underline hover:cursor-pointer">
-                    {" "}
-                    {author}
-                </span>
+                Author by: <Author userId={author} />
             </p>
         </>
     );
