@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { parseISO, formatDistanceToNow } from "date-fns";
 
 function TimeAgo({ timestamp }) {
