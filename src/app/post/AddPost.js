@@ -30,6 +30,7 @@ function AddPost() {
                     title,
                     author,
                     content,
+                    date: new Date().toISOString("id-ID"),
                 })
             );
             setTitle("");

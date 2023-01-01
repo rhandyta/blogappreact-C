@@ -1,5 +1,6 @@
 import React from "react";
 import Author from "./Author";
+import TimeAgo from "./TimeAgo";
 
 function Card({ children }) {
     return (
@@ -11,10 +12,10 @@ function Title({ children }) {
     return <h1 className="font-semibold text-slate-800 text-xl">{children}</h1>;
 }
 
-function Content({ children, author }) {
+function Content({ children, author, timestamp }) {
     return (
         <>
-            <p className="font-thin text-sm text-slate-500">3 minutes later</p>
+            <TimeAgo timestamp={timestamp} />
             <p className="text-slate-600 font-normal py-3">{children}</p>
             <p className="text-sm">
                 Author by: <Author userId={author} />
